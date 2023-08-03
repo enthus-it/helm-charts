@@ -1,0 +1,18 @@
+apiVersion: v2
+appVersion: v0.0.1
+description: Prometheus exporter for Openziti
+name: prometheus-openziti-exporter
+version: 1.0.0
+icon: https://openziti.io/img/ziti-logo-dark.svg
+home: https://github.com/enthus-it/openziti_exporter
+sources:
+  - https://github.com/enthus-it/openziti_exporter
+keywords:
+  - openziti
+  - prometheus
+maintainers:
+- email: alexander.waal@enthus.de
+  name: Alexander Waal
+- name: mjtrangoni
+  email: mjtrangoni@gmail.com
+type: application

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "prometheus-openziti-exporter.fullname" . }}
+  labels:
+{{ include "prometheus-openziti-exporter.labels" . | indent 4 }}
+{{- if .Values.service.labels }}
+{{ toYaml .Values.service.labels | indent 4 }}
+{{- end }}
+  annotations:
+{{ toYaml .Values.service.annotations | indent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: {{ .Values.service.portName }}
+      port: {{ .Values.service.port }}
+      targetPort: exporter-port
+      protocol: TCP
+  selector:
+    {{- include "prometheus-openziti-exporter.selectorLabels" . | nindent 4 }}

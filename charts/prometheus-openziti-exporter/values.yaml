@@ -1,0 +1,106 @@
+# Default values for prometheus-openziti-exporter.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  registry: ghcr.io
+  repository: enthus-it/openziti_exporter
+  # Overrides the image tag whose default is {{ printf "v%s" .Chart.AppVersion }}
+  tag: ""
+  pullPolicy: IfNotPresent
+  digest: ""
+
+imagePullSecrets: []
+# - name: "image-pull-secret"
+nameOverride: ""
+fullnameOverride: ""
+
+rbac:
+  # Specifies whether RBAC resources should be created
+  create: true
+  # Specifies whether a PodSecurityPolicy should be created
+  pspEnabled: false
+serviceAccount:
+  # Specifies whether a ServiceAccount should be created
+  create: true
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+replicaCount: 1
+
+extraArgs: {}
+#  - web.max-requests: 40
+
+# global custom labels, applied to all resrouces
+customLabels: {}
+
+securityContext: {}
+
+# Additional Environment variables
+env: 
+- name: ZITI_MGMT_API
+  value: "https://localhost:1281"
+- name: ZITI_ADMIN_PASSWORD
+  value: 'admin123'
+- name: ZITI_ADMIN_USER
+  value: "admin"
+- name: ZITI_IDENTITY_TYPES
+  value: "user,device,service"
+- name: ZITI_IDENTITY_ROLE_ATTRIBUTES
+  value: ""
+
+service:
+  type: ClusterIP
+  port: 10004
+  portName: openziti-exporter
+  annotations: {}
+  labels: {}
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# deployment additional annotations and labels
+annotations: {}
+labels: {}
+
+containerPorts:
+  - name: exporter-port
+    containerPort: 10004
+
+serviceMonitor:
+  # When set true then use a ServiceMonitor to configure scraping
+  enabled: true
+  multipleTarget: false
+  targets: []
+  # for every targets, url and name must be set,
+  # an individual additionalRelabeling can be set for every target
+  # - url: "https://localhost:1281"
+  #   name: "openziti"
+  additionalMetricsRelabels: {}
+  additionalRelabeling: []
+
+  # Set the namespace the ServiceMonitor should be deployed
+  # namespace: openziti
+  # Set how frequently Prometheus should scrape
+  interval: 60s
+  # Set path to openziti-exporter telemtery-path
+  # Please set telemetryPath to /scrape if you are using multiple targets
+  # telemetryPath: /metrics
+  # Set labels for the ServiceMonitor, use this to define your scrape label for Prometheus Operator
+  # labels:
+  # Set timeout for scrape
+  # timeout: 10s
+  # Set relabel_configs as per https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config
+  # relabelings: []
+  # Set of labels to transfer on the Kubernetes Service onto the target.
+  # targetLabels: []
+  # metricRelabelings: []
+  # Set tls options
+  scheme: "http"
+  tlsConfig:
+    insecureSkipVerify: true
