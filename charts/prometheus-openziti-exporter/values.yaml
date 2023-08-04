@@ -38,7 +38,7 @@ customLabels: {}
 securityContext: {}
 
 # Additional Environment variables
-env: 
+env:
 - name: ZITI_MGMT_API
   value: "https://localhost:1281"
 - name: ZITI_ADMIN_PASSWORD
