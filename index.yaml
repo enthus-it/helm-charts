@@ -2,6 +2,28 @@ apiVersion: v1
 entries:
   prometheus-openziti-exporter:
   - apiVersion: v2
+    appVersion: v0.0.2
+    created: "2023-08-04T11:17:22.951950831Z"
+    description: Prometheus exporter for Openziti
+    digest: ffc5fd2d94338bcae192c5242c74152550e8c5b4e732449db18ef64aa81953b5
+    home: https://github.com/enthus-it/openziti_exporter
+    icon: https://openziti.io/img/ziti-logo-dark.svg
+    keywords:
+    - openziti
+    - prometheus
+    maintainers:
+    - email: alexander.waal@enthus.de
+      name: AlexanderENTH
+    - email: mjtrangoni@gmail.com
+      name: mjtrangoni
+    name: prometheus-openziti-exporter
+    sources:
+    - https://github.com/enthus-it/openziti_exporter
+    type: application
+    urls:
+    - https://github.com/enthus-it/helm-charts/releases/download/prometheus-openziti-exporter-1.0.2/prometheus-openziti-exporter-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
     appVersion: v0.0.1
     created: "2023-08-03T12:43:00.012065897Z"
     description: Prometheus exporter for Openziti
@@ -23,4 +45,4 @@ entries:
     urls:
     - https://github.com/enthus-it/helm-charts/releases/download/prometheus-openziti-exporter-1.0.1/prometheus-openziti-exporter-1.0.1.tgz
     version: 1.0.1
-generated: "2023-08-03T12:43:00.012072597Z"
+generated: "2023-08-04T11:17:22.951957331Z"
