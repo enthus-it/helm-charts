@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: v0.0.3
+appVersion: v0.0.4
 description: Prometheus exporter for Openziti
 name: prometheus-openziti-exporter
-version: 1.0.3
+version: 1.0.4
 icon: https://openziti.io/img/ziti-logo-dark.svg
 home: https://github.com/enthus-it/openziti_exporter
 sources:
