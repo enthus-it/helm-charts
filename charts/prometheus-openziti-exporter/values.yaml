@@ -46,7 +46,7 @@ env:
 - name: ZITI_ADMIN_USER
   value: "admin"
 - name: ZITI_IDENTITY_TYPES
-  value: "user,device,service"
+  value: "default"
 - name: ZITI_IDENTITY_ROLE_ATTRIBUTES
   value: ""
 
