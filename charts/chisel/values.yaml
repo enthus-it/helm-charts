@@ -1,0 +1,74 @@
+# Default values for chisel.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+mode: server
+
+# no client config for server by default
+clients: []
+
+image:
+  repository: jpillora/chisel
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+  customRegistry:     # registry.myorg.com
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  host: example.domain.com
+  enabled: true
+  nginxRewrite: false
+  annotations: {}
+  path: /
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 64Mi
+  requests:
+    cpu: 10m
+    memory: 16Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+args:
+  auth:
+  host:
+  key:
+  authfile:
+  keepalive: 0s
+  backend:
+  socks5:
+  tls:
+    key:
+    cert:
+    domain:
+    ca:
+  verbose: false
