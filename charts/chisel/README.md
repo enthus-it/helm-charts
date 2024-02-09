@@ -8,17 +8,7 @@ The goal of this project is to provide a Helm chart for running Chisel in Kubern
 
 This chart creates kubernetes *services* for the ports forwarded by chisel
 
-## TL;DR
-
-Add the Helm repo
-```bash
-
-helm repo add captains-charts https://storage.googleapis.com/captains-charts
-helm repo update
-
-```
-
-As you might see on the samples the `services` sections are the same on server & client side - so you just can copy them between the client and server side if you use chisel vor cluster interconnection.
+As you might see on the samples the `services` sections are the same on server & client-side - so you just can copy them between the client and server-side if you use chisel vor cluster interconnection.
 
 ### Run as server
 
@@ -189,7 +179,7 @@ helm delete MY-RELEASE
 | Parameter                      | Description                                     | Default |
 | ------------------------- | ----------------------------------------------- | ----- |
 | `ingress.host` | The host that the cluster  | `` |
-| `clients[].user` | The user name for this client | `` |
+| `clients[].user` | The username for this client | `` |
 | `clients[].password` | The password this client | `` |
 | `clients[].services` | Allowed services for this client. See [Chisel Service Definition](#chisel-service-definition) for details | `{}` |
 
@@ -285,7 +275,7 @@ For each service name / key an array of services can be defined. Each service de
 | `ingress.enabled` | Allows generation of Kubernetes Ingress object | `true` |
 | `ingress.annotations` | Annotations added to the Ingress object | `` |
 | `ingress.nginxRewrite` | Used when you require a context root for Chisel. For example `/chisel` | `false` |
-| `ingress.nginxRegex` | When you want to apply regex matching for the Chisel path. | `false` |
+| `ingress.nginxRegex` | When you want to apply regular expression matching for the Chisel path. | `false` |
 | `ingress.tls.secretName` | The name of the Kubernetes secret to store the TLS secret for Ingress | `` |
 | `resources.requests.cpu` | The requested CPU per container | `10m` |
 | `resources.requests.memory` | The requested memory per container | `16Mi` |
