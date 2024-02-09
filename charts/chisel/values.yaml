@@ -14,7 +14,7 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
-  customRegistry: #registry.myorg.com
+  customRegistry:     # registry.myorg.com
 
 imagePullSecrets: []
 nameOverride: ""
@@ -45,12 +45,12 @@ ingress:
   path: /
 
 resources:
-   limits:
-     cpu: 100m
-     memory: 64Mi
-   requests:
-     cpu: 10m
-     memory: 16Mi
+  limits:
+    cpu: 100m
+    memory: 64Mi
+  requests:
+    cpu: 10m
+    memory: 16Mi
 
 nodeSelector: {}
 
@@ -72,4 +72,3 @@ args:
     domain:
     ca:
   verbose: false
-
