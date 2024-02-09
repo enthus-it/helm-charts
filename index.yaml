@@ -1,5 +1,24 @@
 apiVersion: v1
 entries:
+  chisel:
+  - apiVersion: v2
+    appVersion: 1.9.1
+    created: "2024-02-09T14:41:15.400468082Z"
+    description: A Helm chart for jpillora's Chisel
+    digest: 5cc2e09738e3605e297d87a8276e793fda563e4c0348ff4b49af93d4271dc0bc
+    keywords:
+    - chisel
+    - kubernetes
+    - helm
+    - jpillora
+    maintainers:
+    - email: mjtrangoni@gmail.com
+      name: mjtrangoni
+    name: chisel
+    type: application
+    urls:
+    - https://github.com/enthus-it/helm-charts/releases/download/chisel-0.0.5/chisel-0.0.5.tgz
+    version: 0.0.5
   prometheus-openziti-exporter:
   - apiVersion: v2
     appVersion: v0.0.8
@@ -177,4 +196,4 @@ entries:
     urls:
     - https://github.com/enthus-it/helm-charts/releases/download/prometheus-openziti-exporter-1.0.1/prometheus-openziti-exporter-1.0.1.tgz
     version: 1.0.1
-generated: "2024-01-09T09:33:20.64966847Z"
+generated: "2024-02-09T14:41:15.400491536Z"
