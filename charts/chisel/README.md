@@ -2,7 +2,7 @@
 
 Forked from [chisel-helm](https://github.com/just1689/chisel-helm)
 
-The unofficial Helm Chart for jpillora's Chisel. See more about Chisel at https://github.com/jpillora/chisel
+The unofficial Helm Chart for jpillora's Chisel. See more about Chisel at <https://github.com/jpillora/chisel>.
 
 The goal of this project is to provide a Helm chart for running Chisel in Kubernetes. Also supports HTTP path routing!
 
@@ -10,9 +10,10 @@ This chart creates kubernetes *services* for the ports forwarded by chisel
 
 As you might see on the samples the `services` sections are the same on server & client-side - so you just can copy them between the client and server-side if you use chisel vor cluster interconnection.
 
-### Run as server
+## Run as server
 
 Create a values-server.yaml
+
 ```yaml
 mode: server
 ingress:
@@ -90,16 +91,16 @@ securityContext:
 ```
 
 Install using the `values-server.yaml`
-```bash
 
+```bash
 helm install --namespace=default --values values-server.yaml chisel captains-charts/chisel
 chisel client https://mycluster.local/chisel 5000:some-remote:4200
-
 ```
 
 ### Run as client
 
 Create a values-client.yaml
+
 ```yaml
 mode: client
 
@@ -148,21 +149,17 @@ securityContext:
 ```
 
 Install using the `values-client.yaml`
-```bash
 
+```console
 helm install --namespace=default --values values-client.yaml chisel captains-charts/chisel
-
 ```
 
-
-
 ## Uninstalling
-```bash
 
+```console
 helm delete --namespace=default chisel
 # OR
 helm delete MY-RELEASE
-
 ```
 
 ## Parameters
@@ -172,7 +169,6 @@ helm delete MY-RELEASE
 | Parameter                      | Description                                     | Default |
 | ------------------------- | ----------------------------------------------- | ----- |
 | `mode` | Chisel operation mode - `"client"` or `"server"`  |`"server"` |
-
 
 ### Required parameters for "`server"`
 
