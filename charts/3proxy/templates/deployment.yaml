@@ -1,0 +1,84 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "3proxy.fullname" . }}
+  labels:
+    {{- include "3proxy.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "3proxy.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "3proxy.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "3proxy.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            {{- if .Values.service.http.enabled }}
+            - name: http-proxy
+              containerPort: {{ .Values.service.http.port }}
+              protocol: TCP
+            {{- end }}
+            {{- if .Values.service.socks.enabled }}
+            - name: socks-proxy
+              containerPort: {{ .Values.service.socks.port }}
+              protocol: TCP
+            {{- end }}
+          env:
+            {{- if .Values.config.proxyLogin }}
+            - name: "PROXY_LOGIN"
+              value: "{{- .Values.config.proxyLogin -}}"
+            {{- end }}
+            {{- if .Values.config.proxyLogin }}
+            - name: "PROXY_PASSWORD"
+              value: "{{- .Values.config.proxyPassword -}}"
+            {{- end }}
+            {{- if .Values.config.dns.primary }}
+            - name: "PRIMARY_RESOLVER"
+              value: "{{- .Values.config.dns.primary -}}"
+            {{- end }}
+            {{- if .Values.config.dns.secondary }}
+            - name: "SECONDARY_RESOLVER"
+              value: "{{- .Values.config.dns.secondary -}}"
+            {{- end }}
+            {{- if .Values.config.maxConnections }}
+            - name: "MAX_CONNECTIONS"
+              value: "{{- .Values.config.maxConnections -}}"
+            {{- end }}
+            {{- if .Values.config.extraConfig }}
+            - name: "EXTRA_CONFIG"
+              value: "{{- .Values.config.extraConfig -}}"
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

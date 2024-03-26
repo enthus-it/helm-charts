@@ -1,0 +1,82 @@
+---
+# Default values for chisel.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  registry: ghcr.io
+  repository: tarampampam/3proxy
+  # Overrides the image tag whose default is {{ printf "v%s" .Chart.AppVersion }}
+  tag: ""
+  pullPolicy: IfNotPresent
+  digest: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+replicaCount: 1
+
+serviceAccount:
+  create: true
+  annotations: {}
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+# 3proxy container configuration
+config:
+  # Authorization login
+  proxyLogin: ""
+  # Authorization password
+  proxyPassword: ""
+  # DNS Configuration
+  dns:
+    primary: 1.0.0.1
+    secondary: 8.8.4.4
+  # Maximal connections count
+  maxConnections: 1024
+  # Additional 3proxy configuration (do not leave empty spaces around config.)
+  # extraConfig: '# Allow domains \nallow * * google.com\n# Deny not allowed \ndeny *\n'
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  http:
+    enabled: true
+    port: 3128
+    portName: http-port
+  socks:
+    enabled: true
+    port: 1080
+    portName: socks-port
+  annotations: {}
+  labels: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# deployment additional annotations and labels
+annotations: {}
+labels: {}
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
