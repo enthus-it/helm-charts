@@ -1,0 +1,53 @@
+{{ template "chart.header" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+{{ template "chart.description" . }}
+
+Based on [rstudio/prepull-daemonset](https://github.com/rstudio/helm/tree/main/other-charts/prepull-daemonset).
+
+## Installing the Chart
+
+To install the chart with the release name `prepull-daemonset` at version {{ template "chart.version" . }}:
+
+```console
+helm repo add enthus-it https://enthus-it.github.io/helm-charts
+helm repo update
+helm show values enthus-it/prepull-daemonset
+helm install prepull-daemonset enthus-it/prepull-daemonset
+```
+
+## Use
+
+Create a `values.yaml` file somewhere that lists the images you'd like to be pre-pulled (use the `values.yaml` file in this repo for format):
+
+```yaml
+images:
+  - name: my-first-image
+    image: some-id.dkr.ecr.us-east-1.amazonaws.com/my-ecr-repo:latest
+  - name: my-second-image
+    image: some-id.dkr.ecr.us-east-1.amazonaws.com/my-other-repo:latest
+  - name: my-third-public-image
+    image: ubuntu:bionic
+```
+
+## Pull Again
+
+To run the pre-pull again (i.e. to pull new images with the same tag, to ensure node
+caches<sup>†</sup> are fresh), there are a few options:
+
+```console
+# by default, every upgrade is randomized / does a rollout (`--set randomize=false` to disable this behavior)
+helm upgrade install prepull-daemonset enthus-it/prepull-daemonset
+
+# or use kubectl
+kubectl rollout restart daemonset/prepull-daemonset
+```
+
+> <sup>†</sup> Kubernetes Nodes (specifically, the `kubelet` service) periodically remove images from
+> the node's cache to free up disk space, especially if an image is not in use and has
+> not been used lately
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "helm-docs.versionFooter" . }}

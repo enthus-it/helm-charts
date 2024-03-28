@@ -1,0 +1,13 @@
+# list of images to be pre-pulled as init-containers
+images:
+  - name: ubuntu-jammy
+    image: ubuntu:jammy
+
+# See kubectl explain Daemonset.spec.updateStrategy
+updateStrategy: {}
+
+# randomize initContainer order
+randomize: true
+
+# Pause image used to leave the daemonset running without consuming resources
+pauseImage: "registry.k8s.io/pause:3.6"

@@ -1,0 +1,15 @@
+apiVersion: v2
+description: A daemonset to prepull images so they are cached on every node
+kubeVersion: '>= 1.20.0-0'
+name: prepull-daemonset
+type: application
+version: 0.0.1
+icon: https://miro.medium.com/v2/resize:fit:512/1*2Q4FsymDIDtWS_aqiDbwSA.png
+keywords:
+- "prepull"
+- "airgapped"
+- "daemonset"
+- "container"
+maintainers:
+- name: mjtrangoni
+  email: mjtrangoni@gmail.com

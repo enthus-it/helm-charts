@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ .Chart.Name | trunc 63 | trimSuffix "-" }}
+  labels:
+    app: {{ .Chart.Name | trunc 63 | trimSuffix "-" }}
+spec:
+  selector:
+    matchLabels:
+      name: {{ .Chart.Name | trunc 63 | trimSuffix "-" }}
+  {{- with .Values.updateStrategy }}
+  updateStrategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  template:
+    metadata:
+      annotations:
+        {{- if .Values.randomize }}
+        rollme: {{ randAlphaNum 10 | quote }}
+        {{- end }}
+      labels:
+        name: {{ .Chart.Name | trunc 63 | trimSuffix "-" }}
+    spec:
+      initContainers:
+      {{- range .Values.images }}
+        - name: prepull-{{ .name }}
+          image: {{ .image }}
+          imagePullPolicy: IfNotPresent
+          command: ["echo"]
+          args: ["Finished pre-pull"]
+      {{- end }}
+      containers:
+        - name: pause
+          image: {{ .Values.pauseImage }}
