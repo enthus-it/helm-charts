@@ -17,9 +17,9 @@ helm show values enthus-it/prepull-daemonset
 helm install prepull-daemonset enthus-it/prepull-daemonset
 ```
 
-## Use
+## Usage
 
-Create a `values.yaml` file somewhere that lists the images you'd like to be pre-pulled (use the `values.yaml` file in this repo for format):
+List your images required to be pre-pulled at `values.yaml` file with the format,
 
 ```yaml
 images:
@@ -34,7 +34,7 @@ images:
 ## Pull Again
 
 To run the pre-pull again (i.e. to pull new images with the same tag, to ensure node
-caches<sup>†</sup> are fresh), there are a few options:
+caches :one: are fresh), there are a few options:
 
 ```console
 # by default, every upgrade is randomized / does a rollout (`--set randomize=false` to disable this behavior)
@@ -44,7 +44,7 @@ helm upgrade install prepull-daemonset enthus-it/prepull-daemonset
 kubectl rollout restart daemonset/prepull-daemonset
 ```
 
-> <sup>†</sup> Kubernetes Nodes (specifically, the `kubelet` service) periodically remove images from
+> :one: Kubernetes Nodes (specifically, the `kubelet` service) periodically remove images from
 > the node's cache to free up disk space, especially if an image is not in use and has
 > not been used lately
 
