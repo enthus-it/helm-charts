@@ -3,6 +3,24 @@ entries:
   chisel:
   - apiVersion: v2
     appVersion: 1.9.1
+    created: "2024-03-29T10:31:06.47707166Z"
+    description: A Helm chart for jpillora's Chisel
+    digest: d291c395a207095300cfb0d950548ed42c3edc1671c901e29e9a8b86663191f1
+    keywords:
+    - chisel
+    - kubernetes
+    - helm
+    - jpillora
+    maintainers:
+    - email: mjtrangoni@gmail.com
+      name: mjtrangoni
+    name: chisel
+    type: application
+    urls:
+    - https://github.com/enthus-it/helm-charts/releases/download/chisel-0.0.6/chisel-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
+    appVersion: 1.9.1
     created: "2024-02-09T14:41:15.400468082Z"
     description: A Helm chart for jpillora's Chisel
     digest: 5cc2e09738e3605e297d87a8276e793fda563e4c0348ff4b49af93d4271dc0bc
@@ -19,7 +37,49 @@ entries:
     urls:
     - https://github.com/enthus-it/helm-charts/releases/download/chisel-0.0.5/chisel-0.0.5.tgz
     version: 0.0.5
+  prepull-daemonset:
+  - apiVersion: v2
+    created: "2024-03-29T10:31:06.592296749Z"
+    description: A daemonset to prepull images so they are cached on every node
+    digest: c5a8bd447aed5ba09f0fde186b96d583a30caa5972bc6b8308038fa992c247b6
+    icon: https://miro.medium.com/v2/resize:fit:512/1*2Q4FsymDIDtWS_aqiDbwSA.png
+    keywords:
+    - prepull
+    - airgapped
+    - daemonset
+    - container
+    kubeVersion: '>= 1.20.0-0'
+    maintainers:
+    - email: mjtrangoni@gmail.com
+      name: mjtrangoni
+    name: prepull-daemonset
+    type: application
+    urls:
+    - https://github.com/enthus-it/helm-charts/releases/download/prepull-daemonset-0.0.1/prepull-daemonset-0.0.1.tgz
+    version: 0.0.1
   prometheus-openziti-exporter:
+  - apiVersion: v2
+    appVersion: v0.0.8
+    created: "2024-03-29T10:31:06.687701877Z"
+    description: Prometheus exporter for Openziti
+    digest: 11838602861e5e67168e4e69a668b4d81a676c68005d9ffc9820fda52141533d
+    home: https://github.com/enthus-it/openziti_exporter
+    icon: https://openziti.io/img/ziti-logo-dark.svg
+    keywords:
+    - openziti
+    - prometheus
+    maintainers:
+    - email: alexander.waal@enthus.de
+      name: AlexanderENTH
+    - email: mjtrangoni@gmail.com
+      name: mjtrangoni
+    name: prometheus-openziti-exporter
+    sources:
+    - https://github.com/enthus-it/openziti_exporter
+    type: application
+    urls:
+    - https://github.com/enthus-it/helm-charts/releases/download/prometheus-openziti-exporter-1.0.9/prometheus-openziti-exporter-1.0.9.tgz
+    version: 1.0.9
   - apiVersion: v2
     appVersion: v0.0.8
     created: "2024-01-09T09:33:20.649607035Z"
@@ -196,4 +256,4 @@ entries:
     urls:
     - https://github.com/enthus-it/helm-charts/releases/download/prometheus-openziti-exporter-1.0.1/prometheus-openziti-exporter-1.0.1.tgz
     version: 1.0.1
-generated: "2024-02-09T14:41:15.400491536Z"
+generated: "2024-03-29T10:31:06.68776805Z"
