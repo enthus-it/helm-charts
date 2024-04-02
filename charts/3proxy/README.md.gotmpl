@@ -1,0 +1,38 @@
+{{ template "chart.header" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+{{ template "chart.description" . }}
+
+The unofficial Helm Chart for 3proxy. See more about 3proxy at <https://github.com/z3APA3A/3proxy>.
+
+The goal of this project is to provide a Helm chart for running 3proxy in Kubernetes.
+
+This chart creates a kubernetes *service* for the ports forwarded by [this 3proxy docker image](https://github.com/tarampampam/3proxy-docker).
+
+## Get Repository Info
+
+```console
+helm repo add enthus-it https://enthus-it.github.io/helm-charts
+helm repo update
+```
+
+See [`helm repo`](https://helm.sh/docs/helm/helm_repo/) for command documentation.
+
+## Installing
+
+```console
+helm install --namespace=3proxy --values values.yaml 3proxy enthus-it/3proxy
+```
+
+## Uninstalling
+
+```console
+helm delete --namespace=3proxy 3proxy
+# OR
+helm delete MY-RELEASE
+```
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "helm-docs.versionFooter" . }}
