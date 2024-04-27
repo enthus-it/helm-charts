@@ -4,7 +4,7 @@
 
 image:
   registry: ghcr.io
-  repository: enthus-it/openziti_exporter
+  repository: enthus-it/openziti-exporter
   # Overrides the image tag whose default is {{ printf "v%s" .Chart.AppVersion }}
   tag: ""
   pullPolicy: IfNotPresent
