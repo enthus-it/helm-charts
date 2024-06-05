@@ -72,35 +72,36 @@ containerPorts:
   - name: exporter-port
     containerPort: 10004
 
-serviceMonitor:
-  # When set true then use a ServiceMonitor to configure scraping
-  enabled: true
-  multipleTarget: false
-  targets: []
-  # for every targets, url and name must be set,
-  # an individual additionalRelabeling can be set for every target
-  # - url: "https://localhost:1281"
-  #   name: "openziti"
-  additionalMetricsRelabels: {}
-  additionalRelabeling: []
 
-  # Set the namespace the ServiceMonitor should be deployed
-  # namespace: openziti
-  # Set how frequently Prometheus should scrape
-  interval: 60s
-  # Set path to openziti-exporter telemtery-path
-  # Please set telemetryPath to /scrape if you are using multiple targets
-  # telemetryPath: /metrics
-  # Set labels for the ServiceMonitor, use this to define your scrape label for Prometheus Operator
-  # labels:
-  # Set timeout for scrape
-  # timeout: 10s
-  # Set relabel_configs as per https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config
-  # relabelings: []
-  # Set of labels to transfer on the Kubernetes Service onto the target.
-  # targetLabels: []
-  # metricRelabelings: []
-  # Set tls options
-  scheme: "http"
-  tlsConfig:
-    insecureSkipVerify: true
+# ServiceMonitor configuration
+serviceMonitor:
+  # -- If enabled, and prometheus service is enabled, ServiceMonitor resources for Prometheus Operator are created
+  enabled: true
+  # -- Alternative namespace for ServiceMonitor resources
+  namespace: null
+  # -- Namespace selector for ServiceMonitor resources
+  namespaceSelector: {}
+  # -- ServiceMonitor annotations
+  annotations: {}
+  # -- Additional ServiceMonitor labels
+  labels: {}
+  # -- ServiceMonitor scrape interval
+  interval: null
+  # -- ServiceMonitor scrape timeout in Go duration format (e.g. 15s)
+  scrapeTimeout: null
+  # -- ServiceMonitor relabel configs to apply to samples before scraping
+  # https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
+  # (defines `relabel_configs`)
+  relabelings: []
+  # -- ServiceMonitor relabel configs to apply to samples as the last
+  # step before ingestion
+  # https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
+  # (defines `metric_relabel_configs`)
+  metricRelabelings: []
+  # -- ServiceMonitor will add labels from the service to the Prometheus metric
+  # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#servicemonitorspec
+  targetLabels: []
+  # -- ServiceMonitor will use http by default, but you can pick https as well
+  scheme: http
+  # -- ServiceMonitor will use these tlsConfig settings to make the health check requests
+  tlsConfig: null
